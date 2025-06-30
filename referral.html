@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickCash Referral</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }h1 {
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.referral-section {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  margin: 2rem;
+}
+
+.referral-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.social-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-buttons button {
+  background: #ffffff22;
+  border: 2px solid white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-buttons button:hover {
+  background: white;
+  color: #4e54c8;
+}
+
+@media (max-width: 600px) {
+  .social-buttons button {
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h1>📣 Share & Earn ₦1,000 Per Referral</h1>  <div class="referral-section">
+    <h3>Invite friends on social media and earn when they click!</h3>
+    <div class="social-buttons">
+      <button onclick="shareTo('whatsapp')">WhatsApp</button>
+      <button onclick="shareTo('facebook')">Facebook</button>
+      <button onclick="shareTo('twitter')">Twitter</button>
+      <button onclick="shareTo('instagram')">Instagram</button>
+      <button onclick="shareTo('tiktok')">TikTok</button>
+    </div>
+  </div>  <script>
+    function shareTo(platform) {
+      const text = encodeURIComponent("Quickcash is paying Nigerian free money for 1 month and I just received my share. No scam! Click to claim yours now!");
+      const url = encodeURIComponent("https://optidownloader.com/1820359/track");
+      let link = "#";
+
+      switch (platform) {
+        case "whatsapp":
+          link = `https://wa.me/?text=${text}%20${url}`;
+          break;
+        case "facebook":
+          link = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+          break;
+        case "twitter":
+          link = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+          break;
+        case "instagram":
+          alert("To share on Instagram, copy the message and post it manually in your bio or story.");
+          break;
+        case "tiktok":
+          alert("To share on TikTok, create a short video and paste your referral link in the caption.");
+          break;
+      }
+
+      // Open CPA link
+      window.open("https://optidownloader.com/1820359/track", "_blank");
+
+      // Open social link
+      if (link !== "#") {
+        setTimeout(() => {
+          window.open(link, "_blank");
+        }, 1000);
+      }
+    }
+  </script></body>
+</html>

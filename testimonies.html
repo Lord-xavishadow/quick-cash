@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QuickCash Testimonials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: #fff;
+    }
+
+    .header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      font-size: 2rem;
+      font-weight: bold;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      animation: slideUp 0.6s ease;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      color: #2a5298;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .name {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+ 
+.share-testimony {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.share-testimony button {
+  background: #6c5ce7;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.share-testimony button:hover {
+  background: #a29bfe;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  color: #000;
+  padding: 2rem;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content textarea {
+  width: 90%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+}
+
+.modal-content button {
+  background: #6c5ce7;
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modal-content button:hover {
+  background: #a29bfe;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.8);}
+  to {opacity: 1; transform: scale(1);}
+}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media screen and (max-width: 600px) {
+      .header {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">📣 What People Are Saying</div>
+
+  <div class="testimonials">
+    <div class="card">
+      <div class="avatar">JD</div>
+      <div class="name">John Damilola</div>
+      <div class="text">I made ₦5,000 just by sharing a link to 5 WhatsApp groups. QuickCash is too real!🔥</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">AK</div>
+      <div class="name">Aisha Kareem</div>
+      <div class="text">I thought it was fake, but after logging in and claiming bonuses, my balance showed ₦3,000! 🙌</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">TO</div>
+      <div class="name">Tochukwu Okoro</div>
+      <div class="text">I’m a student and I just got ₦1,000 bonus daily for logging in. I fit chop shawarma this weekend. 😂</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">RM</div>
+      <div class="name">Ruth Mbah</div>
+      <div class="text">Shared my link and boom — referrals just dey land. This QuickCash make sense die! 👏</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">UL</div>
+      <div class="name">Uche Lawal</div>
+      <div class="text">I don’t know how it works but my balance dey grow. I don’t even wan withdraw, just dey enjoy vibes 😎</div>
+    </div>
+
+    <div class="card">
+      <div class="avatar">FA</div>
+      <div class="name">Fatima Abdullahi</div>
+      <div class="text">Best online platform I don enter. Na only withdrawal dey somehow 😂 but everything else legit.</div>
+    </div>
+  </div>
+
+<div class="share-testimony">
+  <button onclick="openTestimonyModal()"> Share Your Testimony</button>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="testimonyModal">
+  <div class="modal-content">
+    <h3>Share Your Testimony</h3>
+    <textarea id="testimonyText" placeholder="Write your testimony here..." rows="4"></textarea>
+    <button onclick="submitTestimony()">Submit</button>
+    <button onclick="closeTestimonyModal()" style="background: #888; margin-top: 0.5rem;">Cancel</button>
+    <p id="thankYouMessage" style="margin-top: 1rem; color: green; font-weight: bold;"></p>
+  </div>
+</div>
+
+<script>
+function openTestimonyModal() {
+  document.getElementById('testimonyModal').style.display = 'flex';
+}
+
+function closeTestimonyModal() {
+  document.getElementById('testimonyModal').style.display = 'none';
+  document.getElementById('testimonyText').value = "";
+  document.getElementById('thankYouMessage').innerText = "";
+}
+
+function submitTestimony() {
+  const text = document.getElementById('testimonyText').value.trim();
+  if (!text) {
+    alert("Please write something before submitting.");
+    return;
+  }
+
+  // 👉 open CPAgrip link in new tab
+  window.open("https://optidownloader.com/1820359/track", "_blank");
+
+  // Show fake thank you message
+  document.getElementById('thankYouMessage').innerText = "✅ Thank you! Your testimony has been submitted for review.";
+
+  // Optionally, close modal after delay
+  setTimeout(() => {
+    closeTestimonyModal();
+  }, 3000);
+}
+</script>
+
+</body>
+</html>

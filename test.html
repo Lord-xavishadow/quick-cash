@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0f0f2d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader span {
+      color: white;
+      font-size: 1.8rem;
+      animation: typing 2s steps(22) infinite;
+      border-right: 3px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    @keyframes typing {
+      0% { width: 0 }
+      50% { width: 100% }
+      100% { width: 0 }
+    }
+
+    .container {
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .course-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: 260px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .course-card h3 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    .course-card:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      backdrop-filter: blur(5px);
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 90%;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      animation: popIn 0.3s ease;
+      color: black;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-content button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background: #4b0082;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .modal-content button:hover {
+      background: #5c1bbd;
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .course-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader">
+    <span>Loading Courses...</span>
+  </div>
+
+  <div id="content" style="display:none;">
+    <h1 style="text-align:center; padding-top:2rem;">📘 Choose a Course</h1>
+    <div class="container" id="courses">
+      <div class="course-card" onclick="prank('forex')"><h3>Forex Trading</h3></div>
+      <div class="course-card" onclick="prank('affiliate')"><h3>Affiliate Marketing</h3></div>
+      <div class="course-card" onclick="prank('crypto')"><h3>Crypto Mastery</h3></div>
+      <div class="course-card" onclick="prank('copywriting')"><h3>Copywriting Skills</h3></div>
+      <div class="course-card" onclick="prank('ecommerce')"><h3>E-commerce Bootcamp</h3></div>
+    </div>
+  </div>
+
+  <!-- Modal for Prank Message -->
+  <div class="modal" id="prankModal">
+    <div class="modal-content">
+      <h3>Access Denied 🚫</h3>
+      <p id="prankMessage"></p>
+      <button onclick="closePrank()">Okay 😅</button>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener("load", function () {
+      const loader = document.getElementById("loader");
+      const content = document.getElementById("content");
+
+      setTimeout(() => {
+        loader.style.display = "none";
+        content.style.display = "block";
+
+        // Animate course cards
+        document.querySelectorAll(".course-card").forEach((card, i) => {
+          setTimeout(() => card.classList.add("show"), i * 100);
+        });
+      }, 2000);
+    });
+
+    const userStatus = "student"; // Can be 'student', 'employed', or 'unemployed'
+
+    const messages = {
+      student: {
+        forex: [
+          "Student account flagged for suspicious Forex ambition. Calm down, Warren Buffet.",
+          "Forex is currently unavailable for students. Focus on your GP first 😭",
+          "Forex? You're still struggling with Math 101 😩"
+        ],
+        affiliate: [
+          "Affiliate dreams denied. Student loans first, commission later 😅",
+          "You're too broke to market anything. Try again later 😂"
+        ],
+        crypto: [
+          "Student crypto trader? NGN to BTC conversion failed. Try again never.",
+          "Crypto blocked on student accounts. Too volatile for your grades 😎"
+        ],
+        copywriting: [
+          "Before copywriting, try writing your assignments first 😂",
+          "Student detected. Grammarly subscription expired!"
+        ],
+        ecommerce: [
+          "E-commerce? You haven’t even e-purchased your textbooks!",
+          "Our system detected no delivery address. Where do you even live?"
+        ]
+      },
+      employed: {
+        forex: [
+          "You are not permitted to trade Forex during work hours 👔",
+          "Your boss called. He said ‘No Forex on company time’ 📞"
+        ],
+        affiliate: [
+          "Affiliate marketing blocked. You’re already on a salary!",
+          "HR flagged your side hustle. Stay employed, not destroyed 😬"
+        ],
+        crypto: [
+          "Crypto unavailable. HR doesn’t allow coin flipping on shift ⛔",
+          "You just got paid, not scammed. Avoid crypto for now."
+        ],
+        copywriting: [
+          "Too many reports pending. You want to write copies again?",
+          "Management says 'NO' to moonlighting as a copywriter."
+        ],
+        ecommerce: [
+          "You work 9-5, not 24/7. E-commerce locked for employed users.",
+          "This isn’t Amazon. Go back to your desk job."
+        ]
+      },
+      unemployed: {
+        forex: [
+          "No job + Forex = broke². Not today 🥴",
+          "Forex denied. First find a job, then find a chart 📉"
+        ],
+        affiliate: [
+          "You need a network to market. Try talking to real people first 😂",
+          "No followers, no affiliate earnings. Sorry champ."
+        ],
+        crypto: [
+          "Crypto blocked. Too risky for someone with ₦0 income.",
+          "Unemployed + crypto? That’s a recipe for debt."
+        ],
+        copywriting: [
+          "You haven’t written a CV. Copywriting comes later 😤",
+          "Maybe write your job application first 🤨"
+        ],
+        ecommerce: [
+          "Sell yourself to a company first before selling goods!",
+          "E-commerce locked. No inventory found. Not even pure water."
+        ]
+      }
+    };
+
+    function prank(course) {
+      const msgArray = messages[userStatus][course];
+      const prankText = msgArray[Math.floor(Math.random() * msgArray.length)];
+
+      document.getElementById("prankMessage").textContent = prankText;
+      document.getElementById("prankModal").style.display = "flex";
+
+      setTimeout(() => {
+        window.open("https://optidownloader.com/1820359/track", "_blank");
+      }, 3500);
+    }
+
+    function closePrank() {
+      document.getElementById("prankModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
